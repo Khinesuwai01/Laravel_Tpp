@@ -7,20 +7,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <h1>Products Listing</h1>
         <table class="table">
         <thead>
             <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Color</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Color</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($data as $d)
             <tr>
-            <td>{{$d[0]}}</td>
-            <td>{{$d[1]}}</td>
-            <td>{{$d[2]}}</td>
+                <td>{{$d->id}}</td>
+                <td>{{$d->name}}</td>
+                <td>{{$d->price}}</td>
+                <td>{{$d->color}}</td>
             </tr>
             @endforeach
         </tbody>
