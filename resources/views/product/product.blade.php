@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Products Listing</h1>
+    <a class="btn btn-dark" href="{{route ('productCreate')}}" role="button">Create</a>
         <table class="table">
         <thead>
             <tr>
@@ -15,6 +16,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
                 <th scope="col">Color</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +27,11 @@
                 <td>{{$d->name}}</td>
                 <td>{{$d->price}}</td>
                 <td>{{$d->color}}</td>
+                <td>{{$d->image}}</td>
+                <td>
+                    <a class="btn btn-dark" href="{{url('/product/'. $d->id . '/edit')}}" role="button">Edit</a>
+                    <a class="btn btn-dark" href="#" role="button">Delete</a>
+                </td>
             </tr>
             @endforeach
         </tbody>
