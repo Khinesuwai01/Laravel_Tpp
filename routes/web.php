@@ -21,5 +21,8 @@ Route::get('test/{id}', function($id){
 // });
 
 Route::get('category',[CategoryCotroller::class,'index'])-> name('categoryIndex');
-Route::get('result',[CategoryCotroller::class,'result']);
+Route::get('category/create',[CategoryCotroller::class,'create'])-> name('categoryCreate');
 Route::get('product',[ProductController::class,'product']);
+Route::post('category/store',[CategoryCotroller::class,'store'])->name('categoryStore');
+Route::get('category/{id}/edit',[CategoryCotroller::class,'edit'])-> name('categoryEdit');
+Route::patch('category/{id}',[CategoryCotroller::class,'update'])-> name('categoryUpdate');
