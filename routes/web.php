@@ -27,8 +27,4 @@ Route::post('category/store',[CategoryCotroller::class,'store'])->name('category
 Route::get('category/{id}/edit',[CategoryCotroller::class,'edit'])-> name('categoryEdit');
 Route::patch('category/{id}',[CategoryCotroller::class,'update'])-> name('categoryUpdate');
 
-Route::get('product',[ProductController::class,'product'])-> name('productProduct');
-Route::get('product/create',[ProductController::class,'create'])-> name('productCreate');
-Route::post('product/store',[ProductController::class,'store'])->name('productStore');
-Route::get('product/{id}/edit',[ProductController::class,'edit'])-> name('productEdit');
-Route::patch('product/{id}',[ProductController::class,'update'])-> name('productUpdate');
+
