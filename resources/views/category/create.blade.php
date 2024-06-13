@@ -9,6 +9,7 @@
     <h1>Hello Create Page</h1>
     <form action="store" method="POST">
         @csrf
+        @method('patch')
         <label for="">Name</label>
         <input type="text" name="name">
         <button>Create</button>
