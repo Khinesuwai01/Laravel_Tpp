@@ -37,9 +37,18 @@ class CategoryCotroller extends Controller
         $data = Category::where('id', $id)->first();
         $data->name =   $request->name;
 
-        $data->update();
+        $data->update([
+            'name'=> $request->name
+        ]
+
+        );
 
         return redirect()->route('categoryIndex');
 
+    }
+    public function delete($id){
+        $data = Category::where('id', $id)->first();
+        $data->delete();
+        return redirect()->route('categoryIndex');
     }
 }

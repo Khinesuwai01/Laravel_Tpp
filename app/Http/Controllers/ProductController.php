@@ -24,6 +24,7 @@ class ProductController extends Controller
             'name'=> $request->name,
             'price'=> $request->price,
             'color'=> $request->color,
+            'image'=>$request->image,
         ]);
         return Redirect::route('productProduct');
     }
@@ -36,10 +37,11 @@ class ProductController extends Controller
         $data->name =   $request->name;
         $data->price = $request->price;
         $data->color = $request->color;
-    
+        $data->image = $request->image;
+
         $data->update();
-    
+
         return redirect()->route('productProduct');
-    
+
     }
 }

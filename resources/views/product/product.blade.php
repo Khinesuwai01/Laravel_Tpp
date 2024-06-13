@@ -30,7 +30,7 @@
                 <td>{{$d->image}}</td>
                 <td>
                     <a class="btn btn-dark" href="{{url('/product/'. $d->id . '/edit')}}" role="button">Edit</a>
-                    <a class="btn btn-dark" href="#" role="button">Delete</a>
+                    <a class="btn btn-dark" href="" role="button">Delete</a>
                 </td>
             </tr>
             @endforeach
