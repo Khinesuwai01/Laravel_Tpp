@@ -35,4 +35,4 @@ Route::post('product/store',[ProductController::class,'store'])->name('productSt
 Route::get('product/{id}/edit',[ProductController::class,'edit'])-> name('productEdit');
 Route::patch('product/update/{id}',[ProductController::class,'update'])-> name('productUpdate');
 
-Route::resource('articles', ArticlesController::class);
+Route::resource('/articles', ArticlesController::class);

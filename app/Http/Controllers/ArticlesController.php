@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ArticlesController extends Controller
 {
@@ -11,7 +13,9 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('articles.index');
+        $articles = Article::all();
+        return view('article.index', compact('articles'));
+       
     }
 
     /**
@@ -19,7 +23,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        return view('article.create');
     }
 
     /**
@@ -27,7 +31,12 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Article::create([
+            'name'=> $request->name,
+            'price'=> $request->price,
+            'image'=>$request->image,
+        ]);
+        return Redirect::route('article.index');
     }
 
     /**
@@ -41,9 +50,10 @@ class ArticlesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $articles = Article::where('id', $id)->first();
+        return view('article.edit', compact('articles'));
     }
 
     /**
@@ -51,7 +61,14 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $articles = Article::where('id', $id)->first();
+        $articles->name =   $request->name;
+        $articles->price = $request->price;
+        $articles->image = $request->image;
+
+        $articles->update();
+
+        return redirect()->route('article.index');
     }
 
     /**
@@ -59,6 +76,8 @@ class ArticlesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $articles = Article::where('id', $id)->first();
+        $articles->delete();
+        return redirect()->route('article.ndex');
     }
 }
