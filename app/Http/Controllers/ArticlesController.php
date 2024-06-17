@@ -15,7 +15,6 @@ class ArticlesController extends Controller
     {
         $articles = Article::all();
         return view('article.index', compact('articles'));
-       
     }
 
     /**
@@ -36,7 +35,7 @@ class ArticlesController extends Controller
             'price'=> $request->price,
             'image'=>$request->image,
         ]);
-        return Redirect::route('article.index');
+        return Redirect::route('articles.index');
     }
 
     /**
@@ -61,14 +60,18 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $articles = Article::where('id', $id)->first();
-        $articles->name =   $request->name;
-        $articles->price = $request->price;
-        $articles->image = $request->image;
+        $article = Article::where('id', $id)->first();
+        $article->name =  $request->name;
+        $article->price = $request->price;
+        $article->image = $request->image;
+        $article->update([
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'image'=>$request->image
+        ]);
 
-        $articles->update();
-
-        return redirect()->route('article.index');
+        $articles = Article::all();
+        return Redirect()->route('articles.index');
     }
 
     /**
@@ -76,8 +79,8 @@ class ArticlesController extends Controller
      */
     public function destroy(string $id)
     {
-        $articles = Article::where('id', $id)->first();
-        $articles->delete();
-        return redirect()->route('article.ndex');
+        $article = Article::where('id', $id)->first();
+        $article->delete();
+        return Redirect()->route('articles.index');
     }
 }

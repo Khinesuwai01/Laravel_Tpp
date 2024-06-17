@@ -27,8 +27,6 @@
         <form action="{{url('/category/'. $d->id)}}" method="POST" >
           @csrf
           <button type="submit" class="btn btn-dark">Delete</button>
-      
-      
       </form>
       
     </tr>

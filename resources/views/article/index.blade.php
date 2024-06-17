@@ -28,8 +28,8 @@
                 <td>{{$a->image}}</td>
                 
                 <td>
-                    <a class="btn btn-dark" href="{{url('article/edit',$a->id)}}" role="button">Edit</a> <br> <br>
-                    <form action="{{url('article/destroy', $a->id)}}" method="POST" >
+                    <a class="btn btn-dark" href="{{url('/articles/'. $a->id . '/edit')}}" role="button">Edit</a> <br> <br>
+                    <form action="{{url('/articles/'. $a->id)}}" method="POST" >
                      @csrf
                      @method('Delete')
                         <button type="submit" class="btn btn-dark">Delete</button>

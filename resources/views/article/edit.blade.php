@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Hello Edit Page</h1>
-    <form action="{{url('article.update', $articles->id)}}" method="POST">
+    <form action="{{url('/articles/'.$articles->id)}}" method="POST">
         @csrf
         @method('patch')
         <label for="">Name</label>
@@ -17,7 +17,6 @@
         <input type="number" name="price" value="{{$articles->price}}"><br><br>
         <label for="image">Image</label>
         <input type="file" id="image" name="image" value="{{$articles->image}}"><br><br>
-        <!-- <div id="imagePreview" style="background-image: url('{{url('/img/1.jpg')}}')"></div> -->
         <button class="btn btn-dark">Update</button>
         
             
