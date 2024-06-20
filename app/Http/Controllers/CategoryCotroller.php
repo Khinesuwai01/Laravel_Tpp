@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Redirect;
 
 class CategoryCotroller extends Controller
 {
+    
     public function index()
     {
         $data = Category::all();
@@ -21,9 +24,15 @@ class CategoryCotroller extends Controller
     public function create(){
         return view(('category.create'));
     }
-    public function store(Request $request){
+    public function store(CategoryRequest $request){
         // $data = $request->all();
         // dd($data);
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            // 'body' => ['required'],
+            // 'image' => ['nullable', 'mimes:png.jpg']
+        ]);
+
         Category::create([
             'name'=> $request->name
         ]);

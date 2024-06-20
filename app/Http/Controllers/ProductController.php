@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
+    
     public function product()
     {
         $data = Product::all();
@@ -43,5 +44,10 @@ class ProductController extends Controller
 
         return redirect()->route('productProduct');
 
+    }
+    public function delete($id){
+        $data = Product::where('id', $id)->first();
+        $data->delete();
+        return redirect()->route('productProduct');
     }
 }

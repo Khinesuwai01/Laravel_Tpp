@@ -30,7 +30,10 @@
                 <td>{{$d->image}}</td>
                 <td>
                     <a class="btn btn-dark" href="{{url('/product/'. $d->id . '/edit')}}" role="button">Edit</a>
-                    <a class="btn btn-dark" href="" role="button">Delete</a>
+            <form action="{{url('/product/'. $d->id)}}" method="POST" >
+            @csrf
+                <button type="submit" class="btn btn-dark">Delete</button>
+            </form>
                 </td>
             </tr>
             @endforeach

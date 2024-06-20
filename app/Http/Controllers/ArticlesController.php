@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 
 class ArticlesController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */

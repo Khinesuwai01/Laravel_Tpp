@@ -17,7 +17,7 @@
         <label for="">Color</label>
         <input type="text" name="color"><br><br>
         <label for="image">Image</label>
-        <input type="file" id="image" name="file[]" multiple> <br><br>
+        <input type="file" id="image" name="image"> <br><br>
         <button class="btn btn-dark">Create</button>
         
             
