@@ -15,6 +15,14 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    @can('dashboard')
+                        <a href="{{route('categoryIndex')}}" class="btn btn-dark">Category</a>
+                    @endcan
+
+                    @can('product_listing')
+                        <a href="{{route('productProduct')}}" class="btn btn-dark">Product</a>
+                    @endcan
+                    
                 </div>
             </div>
         </div>
