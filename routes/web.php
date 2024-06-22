@@ -14,6 +14,14 @@ Route::get('/index', function () {
     return view('index');
 });
 
+Route::get('/indexs', function () {
+    return view('indexs');
+});
+
+Route::get('/list', function () {
+    return view('list');
+})->name('list');
+
 Route::get('test/{id}', function($id){
     return 'Hello Test' . '' . $id;
 });
