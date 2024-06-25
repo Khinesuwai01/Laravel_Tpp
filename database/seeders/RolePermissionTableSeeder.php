@@ -13,7 +13,7 @@ class RolePermissionTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminRole = Role::where('name', 'admin')->first();
+        $adminRole = Role::where('name', 'Admin')->first();
         $adminRole->syncPermissions([
             'dashboard',
             'category_listing',
@@ -26,7 +26,7 @@ class RolePermissionTableSeeder extends Seeder
             'product_delete',
         ]);
 
-        $editorRole = Role::where('name', 'editor')->first();
+        $editorRole = Role::where('name', 'Editor')->first();
         $editorRole->syncPermissions([
             'category_listing',
             'category_create',

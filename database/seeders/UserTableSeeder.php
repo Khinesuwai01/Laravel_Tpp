@@ -15,17 +15,17 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'name' => "Yoon",
-            "email" => "yoon45@gmail.com",
-            "password" => Hash::make("121212")
+            'name' => "Lee Dae Yoon",
+            "email" => "lde000@gmail.com",
+            "password" => Hash::make("010101")
 
         ]);
         $admin->assignRole('Admin');
 
         $editor = User::create([
-            'name' => "Khine",
-            "email" => "khine1245@gmail.com",
-            "password" => Hash::make("123456")
+            'name' => "Khine Su Wai",
+            "email" => "ksw888@gmail.com",
+            "password" => Hash::make("080808")
 
         ]);
         $editor->assignRole('Editor');

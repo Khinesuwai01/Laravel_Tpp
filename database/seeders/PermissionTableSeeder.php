@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
-class PremissionTableSeeder extends Seeder
+class PermissionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -28,7 +28,5 @@ class PremissionTableSeeder extends Seeder
         {
             Permission::create(['name'=>$d]);
         }
-
-        // ModelsPermission::insert($data);
     }
 }

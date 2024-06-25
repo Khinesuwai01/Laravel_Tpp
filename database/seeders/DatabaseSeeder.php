@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Category::factory(30)->create(); //day3
-        $this->call(PremissionTableSeeder::class);
+        $this->call(PermissionTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(RolePermissionTableSeeder::class);
         $this->call(UserTableSeeder::class);
