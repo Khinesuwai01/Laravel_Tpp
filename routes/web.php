@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -72,5 +73,6 @@ Route::get('courses', [CoursesController::class, 'course'])-> name('allCourses')
 Route::post('courses/store',[CoursesController::class,'store'])->name('course.store');
 Route::get('courses/create', [CoursesController::class, 'create'])-> name('student.course-create');
 
-// Route::resource('students', StudentController::class);
+Route::resource('users', UserController::class);
+Route::get('users/{userID}/delete', [UserController::class,'destroy']);
 // Route::resource('courses', CoursesController::class);

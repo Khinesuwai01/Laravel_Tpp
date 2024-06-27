@@ -246,31 +246,69 @@
                         @endif
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Role Table</strong>
-                                <a href="{{url('roles/create')}}" class="btn btn-dark">Add Role</a>
+                                <strong class="card-title">User Table</strong>
+                                <a href="{{url('roles/create')}}" class="btn btn-dark">Add User</a>
                             </div>
+
+                            <div id="myDiv" class="container" style="display: none">
+                            <form action="{{url('users')}}" method="POST">
+                                @csrf
+
+                                <div class="mb-3">
+                                    <label for="">User Name</label>
+                                    <input type="text" name="name" class="form-control" autocomplete="off"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Email</label>
+                                    <input type="email" name="email" class="form-control" autocomplete="off"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Password</label>
+                                    <input type="password" name="password" class="form-control" autocomplete="off"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Roles</label>
+                                    <select name="roles[]" class="form-control" multiple>
+                                        <option value="">Select Role</option>
+                                        @foreach($roles as $role)
+                                            <option value="{{$role}}">{{$role}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <button class="btn btn-sm btn-warning text-white" type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Role Name</th>
+                                            <th>User Name</th>
+                                            <th>Email</th>
+                                            <th>Roles</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                          @foreach ($roles as $r)
+                                          @foreach ($users as $u)
                                           <tr>
-                                              <td>{{$r->id}}</td>
-                                              <td>{{$r->name}}</td>
+                                              <td>{{$u->id}}</td>
+                                              <td>{{$u->name}}</td>
+                                              <td>{{$u->email}}</td>
                                               <td>
-
-                                              <a href="{{url('roles/'.$r->id.'/give-permissions')}}" class="btn btn-sm btn-info text-white mx-2" >
-                                                Add / Edit Role Permission
-                                              </a>
+                                                @if(!empty($user->getRoleNames()))
+                                                    @foreach($user->getRoleNames() as $rolename)
+                                                        <label class="badge bg-info text-white">{{$rolename}}</label>
+                                                    @endforeach
+                                                @endif
+                                              </td>
+                                              <td>
                                             
-                                                <a href="{{url('roles/'.$r->id. '/edit')}}" role="button">Edit</a>
-                                                <form action="{{url('roles/'.$r->id. '/delete')}}" method="POST" >
+                                                <a href="{{url('users/'.$u->id. '/edit')}}" role="button">Edit</a>
+                                                <form action="{{url('users/'.$u->id. '/delete')}}" method="POST" >
                                                 @csrf
                                                 @method('GET')
                                                     <button type="submit">Delete</button>

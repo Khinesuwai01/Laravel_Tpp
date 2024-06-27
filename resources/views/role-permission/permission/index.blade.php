@@ -64,6 +64,16 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="{{url ('roles')}}">Roles</a></li>
                             <li><i class="fa fa-table"></i><a href="{{url ('permissions')}}">Permissions</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{url ('users')}}">Users</a></li>
+                        </ul>
+                    </li>
+
+                    <h3 class="menu-title">Students & Courses</h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children active dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Students & Courses</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="{{url('students')}}">Students</a></li>
+                            <li><i class="fa fa-table"></i><a href="{{url('courses')}}">Courses</a></li>
                         </ul>
                     </li>
                     
