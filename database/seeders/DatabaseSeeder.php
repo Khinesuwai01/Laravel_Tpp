@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\StudentCourse;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,9 +23,14 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         Category::factory(30)->create(); //day3
+
         $this->call(PermissionTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(RolePermissionTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        
+
+        $this->call(StudentCourse::class);
+
     }
 }

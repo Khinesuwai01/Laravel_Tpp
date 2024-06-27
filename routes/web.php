@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\CategoryCotroller;
+use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudentController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +54,6 @@ Route::resource('/articles', ArticlesController::class)->middleware('auth');
 // Auth::routes();
 Auth::routes(['register' => false]);
 
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('permissions', PermissionController::class);
@@ -62,3 +63,14 @@ Route::resource('roles', RoleController::class);
 Route::get('roles/{roleId}/delete',[ RoleController::class, 'destroy']);
 Route::get('roles/{roleId}/give-permissions',[ RoleController::class, 'addPermissionToRole']);
 Route::put('roles/{roleId}/give-permissions',[ RoleController::class, 'givePermissionToRole']);
+
+Route::get('students',[StudentController::class,'index'])-> name('student.index');
+Route::post('students/store',[StudentController::class,'store'])->name('student.store');
+Route::get('students/create',[StudentController::class,'create'])-> name('student.create');
+
+Route::get('courses', [CoursesController::class, 'course'])-> name('allCourses');
+Route::post('courses/store',[CoursesController::class,'store'])->name('course.store');
+Route::get('courses/create', [CoursesController::class, 'create'])-> name('student.course-create');
+
+// Route::resource('students', StudentController::class);
+// Route::resource('courses', CoursesController::class);
