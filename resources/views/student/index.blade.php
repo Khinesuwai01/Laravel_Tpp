@@ -275,6 +275,14 @@
                                                     <span class="badge bg-info">{{$course->name}}</span>
                                                 @endforeach
                                               </td>
+                                              <td>
+                                                    <a href="{{ route('students/edit', $student->id) }}" class="btn btn-warning">Edit</a>
+                                                    <form action="{{ route('students/destroy', $student->id) }}" method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                            </td>
                                             </tr>
                                             @endforeach
                                               

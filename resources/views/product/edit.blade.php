@@ -12,11 +12,11 @@
         @csrf
         @method('patch')
         <label for="">Name</label>
-        <input type="text" name="name"><br><br>
+        <input type="text" name="name" value="{{$data->name}}"><br><br>
         <label for="">Price</label>
-        <input type="number" name="price"><br><br>
+        <input type="number" name="price" value="{{$data->price}}"><br><br>
         <label for="">Color</label>
-        <input type="text" name="color"><br><br>
+        <input type="text" name="color" value="{{$data->color}}"><br><br>
         <label for="image">Image</label>
         <input type="file" id="image" name="image"><br><br>
         <!-- <div id="imagePreview" style="background-image: url('{{url('/img/1.jpg')}}')"></div> -->

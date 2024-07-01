@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repository\Role\RoleRepositoryInterface;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Support\Facades\DB;
@@ -9,9 +10,16 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+    private RoleRepositoryInterface $roleRepository;
+
+    public function __construct(RoleRepositoryInterface $roleRepository)
+    {
+        $this->roleRepository = $roleRepository;
+    }
+
     public function index()
     {
-        $roles = Role::all();
+        $roles = $this->roleRepository->get();
         return view('role-permission.role.index',compact('roles'));
     }
 
@@ -38,7 +46,7 @@ class RoleController extends Controller
 
     public function edit($id)
     {
-        $roles = Role::where('id', $id)->first();
+        $roles = $this->roleRepository->findById($id);
         return view('role-permission.role.edit',compact('roles'));
     }
 
@@ -58,7 +66,8 @@ class RoleController extends Controller
         return redirect('roles')->with('status', 'Role Updated Successfully');
     }
 
-    public function destroy($rolesId){
+    public function destroy($rolesId)
+    {
         $roles = Role::find($rolesId);
         $roles->delete();
         return redirect('roles')->with('status', 'Role Deleted Successfully');

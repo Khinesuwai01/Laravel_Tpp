@@ -36,8 +36,8 @@
                             <div class="form-group">
                                 <label for="courses">Courses</label>
                                 <select name="courses[]" id="courses" class="form-control" multiple>
-                                    @foreach($courses as $c)
-                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                    @foreach($students as $s)
+                                        <option value="{{ $s->id }}">{{ $s->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

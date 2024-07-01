@@ -243,7 +243,7 @@
                         @endif
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Students Table</strong>
+                                <strong class="card-title">Course Table</strong>
                                 <a href="{{url('courses/create')}}" class="btn btn-dark">Create Course</a>
                             </div>
                             <div class="card-body">
@@ -259,6 +259,14 @@
                                         <tr>
                                             <td>{{$c->id}}</td>
                                             <td>{{$c->name}}</td>
+                                            <td>
+                                                <a href="{{ route('courses/edit', $c->id) }}" class="btn btn-warning">Edit</a>
+                                                <form action="{{ route('courses/destroy', $c->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

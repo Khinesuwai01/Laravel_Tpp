@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repository\Article\ArticleRepositoryInterface;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
 class ArticlesController extends Controller
 {
-    public function __construct()
+    private ArticleRepositoryInterface $articleRepository;
+
+    public function __construct(ArticleRepositoryInterface $articleRepository)
     {
-        $this->middleware('auth');
+        $this->articleRepository = $articleRepository;
     }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = $this->articleRepository->get();
         return view('article.index', compact('articles'));
     }
 
@@ -55,7 +59,7 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        $articles = Article::where('id', $id)->first();
+        $articles = $this->articleRepository->findByID($id);
         return view('article.edit', compact('articles'));
     }
 
@@ -64,17 +68,17 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $article = Article::where('id', $id)->first();
-        $article->name =  $request->name;
-        $article->price = $request->price;
-        $article->image = $request->image;
-        $article->update([
+        $articles = $this->articleRepository->findByID($id);
+        $articles->name =  $request->name;
+        $articles->price = $request->price;
+        $articles->image = $request->image;
+        $articles->update([
             'name'=>$request->name,
             'price'=>$request->price,
             'image'=>$request->image
         ]);
 
-        $articles = Article::all();
+        $articles->update();
         return Redirect()->route('articles.index');
     }
 
@@ -83,8 +87,8 @@ class ArticlesController extends Controller
      */
     public function destroy(string $id)
     {
-        $article = Article::where('id', $id)->first();
-        $article->delete();
+        $articles = $this->articleRepository->findByID($id);
+        $articles->delete();
         return Redirect()->route('articles.index');
     }
 }

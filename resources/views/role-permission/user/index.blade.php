@@ -247,7 +247,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">User Table</strong>
-                                <a href="{{url('roles/create')}}" class="btn btn-dark">Add User</a>
+                                <a href="" class="btn btn-dark">Add User</a>
                             </div>
 
                             <div id="myDiv" class="container" style="display: none">

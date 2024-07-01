@@ -46,11 +46,11 @@ Route::get('product',[ProductController::class,'product'])-> name('productProduc
 Route::get('product/create',[ProductController::class,'create'])-> name('productCreate');
 Route::post('product/store',[ProductController::class,'store'])->name('productStore');
 Route::get('product/{id}/edit',[ProductController::class,'edit'])-> name('productEdit');
-Route::patch('product/update/{id}',[ProductController::class,'update'])-> name('productUpdate');
+Route::patch('product/{id}',[ProductController::class,'update'])-> name('productUpdate');
 Route::post('product/{id}',[ProductController::class,'delete'])-> name('productDelete');
 
 
-Route::resource('/articles', ArticlesController::class)->middleware('auth');
+Route::resource('/articles', ArticlesController::class);
 
 // Auth::routes();
 Auth::routes(['register' => false]);
@@ -68,6 +68,9 @@ Route::put('roles/{roleId}/give-permissions',[ RoleController::class, 'givePermi
 Route::get('students',[StudentController::class,'index'])-> name('student.index');
 Route::post('students/store',[StudentController::class,'store'])->name('student.store');
 Route::get('students/create',[StudentController::class,'create'])-> name('student.create');
+Route::get('students/{id}/edit',[StudentController::class,'edit'])-> name('student.edit');
+Route::patch('students/update/{id}',[StudentController::class,'update'])-> name('student.update');
+Route::post('students/{id}',[StudentController::class,'delete'])-> name('student.delete');
 
 Route::get('courses', [CoursesController::class, 'course'])-> name('allCourses');
 Route::post('courses/store',[CoursesController::class,'store'])->name('course.store');

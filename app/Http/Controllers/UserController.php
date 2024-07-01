@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repository\User\UserRepositoryInterface;
 use App\Http\Requests\UserRequest;
 use App\Models\Role;
 use App\Models\User;
@@ -10,8 +11,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
+    private UserRepositoryInterface $userRepository;
+
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function index(){
-        $users = User::get();
+        $users = $this->userRepository->get();
         $roles = Role::pluck('name','name')->all();
         return view('role-permission.user.index', compact(['users', 'roles']));
     }
@@ -31,7 +40,7 @@ class UserController extends Controller
             return redirect('/users')->with('success', 'User Created Successfully');
     }
     public function edit(User $user){
-//        return $user;
+
         $roles = Role::pluck('name','name')->all();
         $userRole = $user->roles->pluck('name','name')->all();
         return view('role-permission.user.edit', compact(['user','roles','userRole']));
