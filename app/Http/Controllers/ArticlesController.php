@@ -9,19 +9,13 @@ use Illuminate\Support\Facades\Redirect;
 
 class ArticlesController extends Controller
 {
-    private ArticleRepositoryInterface $articleRepository;
-
-    public function __construct(ArticleRepositoryInterface $articleRepository)
-    {
-        $this->articleRepository = $articleRepository;
-    }
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $articles = $this->articleRepository->get();
+        $articles = Article::all();
         return view('article.index', compact('articles'));
     }
 
@@ -59,7 +53,7 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        $articles = $this->articleRepository->findByID($id);
+        $articles = Article::where('id', $id)->first();
         return view('article.edit', compact('articles'));
     }
 
@@ -68,7 +62,7 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $articles = $this->articleRepository->findByID($id);
+        $articles = Article::where('id', $id)->first();
         $articles->name =  $request->name;
         $articles->price = $request->price;
         $articles->image = $request->image;
@@ -87,7 +81,7 @@ class ArticlesController extends Controller
      */
     public function destroy(string $id)
     {
-        $articles = $this->articleRepository->findByID($id);
+        $articles = Article::where('id', $id)->first();
         $articles->delete();
         return Redirect()->route('articles.index');
     }

@@ -11,17 +11,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class CategoryCotroller extends Controller
 {
-    private CategoryRepositoryInterface $categoryRepository;
+    // private CategoryRepositoryInterface $categoryRepository;
 
-    public function __construct(CategoryRepositoryInterface $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
+    // public function __construct(CategoryRepositoryInterface $categoryRepository)
+    // {
+    //     $this->categoryRepository = $categoryRepository;
+    // }
     
     public function index()
     {
-        $data = $this->categoryRepository->get();
+        // $data = $this->categoryRepository->get();
         // dd($data);
+        $data = Category::all();
         return view('category.index', compact('data'));
     }
 
@@ -46,12 +47,16 @@ class CategoryCotroller extends Controller
         return Redirect::route('categoryIndex');
     }
     public function edit($id){
-        $data = $this->categoryRepository->findById(($id));
+
+        // $data = $this->categoryRepository->findById(($id));
+        $data = Category::where('id', $id)->first();
         return view('category.edit', compact('data'));
     }
 
     public function update(Request $request, $id){
-        $data = $this->categoryRepository->findById(($id));
+        // dd($id);
+        // $data = $this->categoryRepository->findById(($id));
+        $data = Category::where('id', $id)->first();
         $data->name =   $request->name;
 
         $data->update([
@@ -64,7 +69,8 @@ class CategoryCotroller extends Controller
 
     }
     public function delete($id){
-        $data = $this->categoryRepository->findById(($id));
+        // $data = $this->categoryRepository->findById(($id));
+        $data = Category::where('id', $id)->first();
         $data->delete();
         return redirect()->route('categoryIndex');
     }

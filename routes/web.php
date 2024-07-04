@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\CategoryCotroller;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\ObjectController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -50,7 +51,7 @@ Route::patch('product/{id}',[ProductController::class,'update'])-> name('product
 Route::post('product/{id}',[ProductController::class,'delete'])-> name('productDelete');
 
 
-Route::resource('/articles', ArticlesController::class);
+Route::resource('articles', ArticlesController::class);
 
 // Auth::routes();
 Auth::routes(['register' => false]);
@@ -72,10 +73,14 @@ Route::get('students/{id}/edit',[StudentController::class,'edit'])-> name('stude
 Route::patch('students/update/{id}',[StudentController::class,'update'])-> name('student.update');
 Route::post('students/{id}',[StudentController::class,'delete'])-> name('student.delete');
 
-Route::get('courses', [CoursesController::class, 'course'])-> name('allCourses');
-Route::post('courses/store',[CoursesController::class,'store'])->name('course.store');
-Route::get('courses/create', [CoursesController::class, 'create'])-> name('student.course-create');
+// Route::get('courses', [CoursesController::class, 'course'])-> name('allCourses');
+// Route::post('courses/store',[CoursesController::class,'store'])->name('course.store');
+// Route::get('courses/create', [CoursesController::class, 'create'])-> name('student.course-create');
 
 Route::resource('users', UserController::class);
 Route::get('users/{userID}/delete', [UserController::class,'destroy']);
 // Route::resource('courses', CoursesController::class);
+
+Route::resource('objects', ObjectController::class);
+Route::put('objects/{objectID}/update', [ObjectController::class])->name('object.update');
+

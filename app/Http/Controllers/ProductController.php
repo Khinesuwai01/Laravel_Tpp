@@ -27,6 +27,7 @@ class ProductController extends Controller
         // dd($data);
         return view('product.product',compact('data'));
     }
+
     public function create(){
         return view(('product.create'));
     }
